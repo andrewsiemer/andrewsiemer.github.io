@@ -1,107 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>siemer</title>
+  <meta charset="utf-8" />
+  <title>Siemer</title>
 
-<link rel="apple-touch-icon" href="/static/apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon-180x180.png">
-<link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
-<link rel="icon" type="image/png" href="/static/favicon.png">
-<link rel="alternate icon" type="image/png" href="/static/favicon-32x32.png">
-<link rel="manifest" href="/static/site.webmanifest">
-<link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="#333333">
-<link rel="shortcut icon" href="/static/favicon.ico">
-<meta name="apple-mobile-web-app-title" content="Siemer">
-<meta name="application-name" content="Siemer">
-<meta name="msapplication-TileColor" content="#2b5797">
-<meta name="msapplication-config" content="/static/browserconfig.xml">
-<meta name="theme-color" content="#ffffff">
-<meta property="og:title" content="siemer"/>
-<meta property="og:image" content="/static/og.png" />
+  <link rel="icon" type="image/png" href="/static/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+  <link rel="shortcut icon" href="/static/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Siemer" />
+  <link rel="manifest" href="/static/site.webmanifest" />
 
-<style>
-:root {
-  background-color: rgb(235,235,235);
-  font-family: "Georgia", Times, serif;
-  text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
-}
+  <meta name="theme-color" content="#f4f2ea" />
+  <meta property="og:title" content="Siemer" />
+  <meta property="og:image" content="/static/og.jpg" />
 
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
+  <style>
+    :root {
+      --bg: #f4f2ea;
+      --fg: #756445;
+      --muted: rgba(117, 100, 69, 0.55);
+    }
 
-.center h1 {
-  font-size: 7vw;
-  display: inline-block;
-  letter-spacing: 1.5vw;
-  color: rgb(27,28,30);
-  font-weight: bold;
-  -webkit-animation: fadein 5s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 5s; /* Firefox < 16 */
-  -ms-animation: fadein 5s; /* Internet Explorer */
-  -o-animation: fadein 5s; /* Opera < 12.1 */
-  animation: fadein 5s;
-}
+    /* Base Styles */
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: "Georgia", "Times New Roman", serif;
+      user-select: none;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
 
-/* style for dark mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-	background-color: rgb(27,28,30);
-        text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-  }
-  .center h1 {
-  	color: rgb(235,235,235);
-  }
-}
+    .logo {
+      width: min(30vw, 270px);
+      height: min(30vw, 270px);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url('static/siemer-crest-outlined-dark.png');
+    }
 
-/* Scaling for mobile */
-@media screen and (max-width: 546px) {
-  .center h1 {
-    font-size: 13vw !important;
-  }
-}
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #756445;
+        --fg: #f4f2ea;
+        --muted: rgba(244, 242, 234, 0.6);
+      }
 
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
+      body {
+        background-color: var(--bg);
+        color: var(--fg);
+      }
 
-/* Firefox < 16 */
-@-moz-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
+      .logo {
+        background-image: url('static/siemer-crest-outlined-light.png');
+      }
+    }
 
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
+    .motto {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 1.25rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: linear-gradient(to top, var(--bg), rgba(0, 0, 0, 0));
+      backdrop-filter: blur(2px);
+    }
 
-/* Internet Explorer */
-@-ms-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
 
-/* Opera < 12.1 */
-@-o-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-</style>
+    @media (max-width: 600px) {
+      .motto {
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+      }
+    }
+  </style>
 </head>
-<body>
-<div class="center">
-  <h1>SIEMER</h1>
-</div>
-</body>
-</html>
 
+<body>
+  <div class="logo" aria-label="Siemer crest"></div>
+
+  <nav class="motto">
+    Fides · Intentio · Industria · Ingenium
+  </nav>
+</body>
+
+</html>
