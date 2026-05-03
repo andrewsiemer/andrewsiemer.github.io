@@ -4,55 +4,97 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex,nofollow,noarchive" />
-  <title>Kaitlyn Siemer</title>
+  <title>Kaitlyn Siemer — Signature</title>
 
-  <link rel="preload" href="/static/fonts/CrimsonPro-Light.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/static/css/crimson-pro.css">
-  <link rel="icon" type="image/svg+xml" href="/static/images/icons/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400&display=swap">
 
   <style>
-    :root { --bg: #f4f2ea; --fg: #756445; --rule: rgba(117, 100, 69, 0.25); }
-    @media (prefers-color-scheme: dark) {
-      :root { --bg: #756445; --fg: #f4f2ea; --rule: rgba(244, 242, 234, 0.3); }
-    }
-    html, body { margin: 0; padding: 0; height: 100%; }
+    html, body { margin: 0; padding: 0; background: #ffffff; }
     body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: 'CrimsonPro-Light', serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 32px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
-    .sig-frame {
-      padding: 2rem;
+    .copy-btn {
+      font: inherit;
+      font-size: 13px;
+      padding: 8px 16px;
+      background: #756445;
+      color: #f4f2ea;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
-    .sig {
-      font-family: 'CrimsonPro-Light', serif;
-      color: var(--fg);
-      border-collapse: collapse;
+    .copy-btn:active { opacity: 0.8; }
+    .copy-status {
+      display: inline-block;
+      margin-left: 12px;
+      font-size: 12px;
+      color: #756445;
+      opacity: 0;
+      transition: opacity 0.2s;
     }
-    .sig td { vertical-align: middle; }
-    .sig .crest { padding-right: 16px; }
-    .sig .crest img { display: block; width: 71px; height: 54px; }
-    .sig .text { border-left: 1px solid var(--rule); padding-left: 16px; }
-    .sig .name { font-size: 22px; letter-spacing: 0.02em; line-height: 1; }
+    .copy-status.show { opacity: 1; }
+    .controls { margin-bottom: 32px; }
   </style>
 </head>
 <body>
 
-<div class="sig-frame">
-  <table class="sig" cellpadding="0" cellspacing="0" border="0" role="presentation">
-    <tr>
-      <td class="crest">
-        <img src="/static/images/brand/crest-outlined-dark-small.png" alt="Siemer crest" width="71" height="54">
-      </td>
-      <td class="text">
-        <div class="name">Kaitlyn Siemer</div>
-      </td>
-    </tr>
-  </table>
+<div class="controls">
+  <button class="copy-btn" id="copyBtn">Copy signature</button>
+  <span class="copy-status" id="copyStatus">Copied to clipboard</span>
 </div>
+
+<table id="signature" cellpadding="0" cellspacing="0" border="0" role="presentation"
+       style="font-family: 'Crimson Pro', 'Hoefler Text', Georgia, serif; font-weight: 400; color: #756445;">
+  <tr>
+    <td style="vertical-align: middle; padding-right: 16px;">
+      <img src="/static/images/brand/crest-outlined-dark-small.png"
+           alt="Siemer crest" width="71" height="54"
+           style="display:block; width:71px; height:54px;">
+    </td>
+    <td style="vertical-align: middle; border-left: 1px solid rgba(117,100,69,0.25); padding-left: 16px;">
+      <div style="font-family: 'Crimson Pro', 'Hoefler Text', Georgia, serif; font-weight: 400; font-size: 20px; letter-spacing: 0.02em; color: #756445;">Kaitlyn Siemer</div>
+    </td>
+  </tr>
+</table>
+
+<script>
+(function () {
+  const btn = document.getElementById('copyBtn');
+  const status = document.getElementById('copyStatus');
+  const sig = document.getElementById('signature');
+
+  btn.addEventListener('click', async () => {
+    const html = sig.outerHTML;
+    const text = sig.innerText;
+    let ok = false;
+    try {
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          'text/html': new Blob([html], { type: 'text/html' }),
+          'text/plain': new Blob([text], { type: 'text/plain' })
+        })
+      ]);
+      ok = true;
+    } catch (e) {
+      const range = document.createRange();
+      range.selectNodeContents(sig);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      try { ok = document.execCommand('copy'); } catch (e2) {}
+      sel.removeAllRanges();
+    }
+    status.textContent = ok ? 'Copied to clipboard' : 'Copy failed — long-press the signature to copy';
+    status.classList.add('show');
+    setTimeout(() => status.classList.remove('show'), 2000);
+  });
+})();
+</script>
 
 </body>
 </html>
