@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <title>Andrew Siemer</title>
+
+  <link rel="preload" href="/static/fonts/CrimsonPro-Light.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/static/css/crimson-pro.css">
+  <link rel="icon" type="image/svg+xml" href="/static/images/icons/favicon.svg" />
+
+  <style>
+    :root { --bg: #f4f2ea; --fg: #756445; --rule: rgba(117, 100, 69, 0.25); }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #756445; --fg: #f4f2ea; --rule: rgba(244, 242, 234, 0.3); }
+    }
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'CrimsonPro-Light', serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sig-frame {
+      padding: 2rem;
+    }
+    .sig {
+      font-family: 'CrimsonPro-Light', serif;
+      color: var(--fg);
+      border-collapse: collapse;
+    }
+    .sig td { vertical-align: middle; }
+    .sig .crest { padding-right: 16px; }
+    .sig .crest img { display: block; width: 71px; height: 54px; }
+    .sig .text { border-left: 1px solid var(--rule); padding-left: 16px; }
+    .sig .name { font-size: 22px; letter-spacing: 0.02em; line-height: 1; }
+  </style>
+</head>
+<body>
+
+<div class="sig-frame">
+  <table class="sig" cellpadding="0" cellspacing="0" border="0" role="presentation">
+    <tr>
+      <td class="crest">
+        <img src="/static/images/brand/crest-outlined-dark-small.png" alt="Siemer crest" width="71" height="54">
+      </td>
+      <td class="text">
+        <div class="name">Andrew Siemer</div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>
